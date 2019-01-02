@@ -1,5 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableHighlight, View } from 'react-native';
+
+import StyledButton from './StyledButton';
 import { black, white } from '../utils/helpers';
 
 export default function ScoreCard ({ score, total }) {

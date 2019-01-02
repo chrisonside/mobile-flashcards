@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-import StyledButton from './components/StyledButton';
+import StyledButton from './StyledButton';
 import { black, white } from '../utils/helpers';
 
 export default class AddQuizCard extends Component {
