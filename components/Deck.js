@@ -1,10 +1,17 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-import StyledButton from './components/StyledButton';
+import StyledButton from './StyledButton';
 import { black, white } from '../utils/helpers';
 
 export default class Deck extends Component {
+
+  updateScreen = (screen) => {
+    // Switch stack
+    this.props.navigation.navigate(screen);
+    // todo - Redux setCurrentDeck
+  }
+
   render() {
 
     const demoDeck = {
@@ -16,8 +23,8 @@ export default class Deck extends Component {
       <View>
         <Text>{demoDeck.title}</Text>
         <Text>{demoDeck.cards} cards</Text>
-        <StyledButton onPress={console.log('add card pressed')}>Add Card</StyledButton>
-        <StyledButton onPress={console.log('start quiz pressed')}>Start Quiz</StyledButton>
+        <StyledButton onPress={() => {this.updateScreen('AddQuizCard')}}>Add Card</StyledButton>
+        <StyledButton onPress={() => {this.updateScreen('Quiz')}}>StartQuiz</StyledButton>
       </View>
     )
   }
