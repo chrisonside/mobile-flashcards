@@ -1,21 +1,24 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { Component } from 'react';
+import { View, Platform } from 'react-native';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import { TabNavigator, StackNavigator } from 'react-navigation';
+import { FontAwesome } from '@expo/vector-icons';
 
-export default class App extends React.Component {
+import reducer from './reducers';
+import CustomStatusBar from './components/CustomStatusBar';
+// import { createLocalNotification } from './utils/helpers';
+import { white, blue } from './utils/colors';
+
+export default class App extends Component {
+  componentDidMount(){
+    // todo - createLocalNotification
+  }
   render() {
-    return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
+    <Provider store={createStore(reducer)}>
+      <View style={{ flex: 1 }}>
+        <CustomStatusBar bgColor={blue} barStyle='light-content'></CustomStatusBar>
       </View>
-    );
+    </Provider>
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
