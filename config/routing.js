@@ -13,6 +13,7 @@ import { blue, white } from '../utils/colors';
 
 // I followed this tutorial whilst setting up my navigation - https://hackernoon.com/getting-started-with-react-navigation-the-navigation-solution-for-react-native-ea3f4bd786a4
 // I am nesting my app's screen stack (via StackNavigator) within my Tabs (via TabNavigator)
+// todo - add dynamic page titles here
 export const ScreenStack = StackNavigator({
   DeckList: {
     screen: DeckList,
@@ -24,24 +25,28 @@ export const ScreenStack = StackNavigator({
     screen: Deck,
     navigationOptions: {
       title: 'Deck',
+      tabBarVisible: false,
     },
   },
   Quiz: {
     screen: Quiz,
     navigationOptions: {
       title: 'Quiz',
+      tabBarVisible: false,
     },
   },
   ScoreCard: {
     screen: ScoreCard,
     navigationOptions: {
       title: 'ScoreCard',
+      tabBarVisible: false,
     },
   },
   AddQuizCard: {
     screen: AddQuizCard,
     navigationOptions: {
       title: 'Add card',
+      tabBarVisible: false,
     },
   },
 });
