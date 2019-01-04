@@ -24,7 +24,6 @@ class DeckList extends Component {
   }
 
   render() {
-
     const { deckArray } = this.props;
 
     // todo - Style this properly
@@ -41,7 +40,7 @@ class DeckList extends Component {
         { deckArray.map((deck) => (
           <View key={deck.title}>
             <Text onPress={() => {this.updateScreenAndRedux(deck.title)}}>{deck.title}</Text>
-            <Text>{deck.cards} cards</Text>
+            <Text>{deck.questions.length} cards</Text>
           </View>
         ))}
       </View>
