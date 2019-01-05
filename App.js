@@ -10,7 +10,7 @@ import { Tabs } from './config/routing';
  import { saveDeckListToAsyncStorage } from './utils/api';
 // import { createLocalNotification } from './utils/helpers';
 import CustomStatusBar from './components/CustomStatusBar';
-import { blue, white } from './utils/colors';
+import { black } from './utils/colors';
 
 /*
   * This function returns a middleware which replaces the deck data stored in AsyncStorage on user's mobile device
@@ -44,7 +44,7 @@ export default class App extends Component {
         applyMiddleware(asyncDeckStorage([INITIALISE_DECK_DATA]))
         )}>
         <View style={{ flex: 1 }}>
-          {/* <CustomStatusBar bgColor={blue} barStyle='light-content'></CustomStatusBar> */}
+          <CustomStatusBar bgColor={black} barStyle='light-content'></CustomStatusBar>
           <Tabs />
         </View>
       </Provider>
