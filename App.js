@@ -7,8 +7,8 @@ import { FontAwesome } from '@expo/vector-icons';
 import reducer from './reducers';
 import { INITIALISE_DECK_DATA } from './actions';
 import { Tabs } from './config/routing';
- import { saveDeckListToAsyncStorage } from './utils/api';
-// import { createLocalNotification } from './utils/helpers';
+import { saveDeckListToAsyncStorage } from './utils/api';
+import { setUpLocalNotification } from './utils/notifications';
 import CustomStatusBar from './components/CustomStatusBar';
 import { black } from './utils/colors';
 
@@ -27,7 +27,6 @@ const asyncDeckStorage = (action_blacklist = []) => {
     /* If action not on blacklist, dispatch redux action to the store, and then save decks data to AsyncStorage */
     const result = next(action);
     const { decks } = store.getState();
-    // console.log('middleware running', store.getState());
     saveDeckListToAsyncStorage(decks);
     return result;
   };
@@ -35,7 +34,7 @@ const asyncDeckStorage = (action_blacklist = []) => {
 
 export default class App extends Component {
   componentDidMount(){
-    // todo - createLocalNotification;
+    setUpLocalNotification();
   }
   render() {
     return (

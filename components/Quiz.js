@@ -5,6 +5,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import ScoreCard from './ScoreCard';
 import Pagination from './Pagination';
 import StyledButton from './StyledButton';
+import { clearLocalNotification, setUpLocalNotification } from '../utils/notifications';
 import { black, white } from '../utils/helpers';
 
 class Quiz extends Component {
@@ -51,8 +52,10 @@ class Quiz extends Component {
 
     // Display scorecard if all cards in deck answered
     // I pass navigation as prop so that the functional component ScoreCard can access it
-    // todo - style this properly
     if (currentQuestionNum > totalQuestions) {
+      // As user has completed a quiz today, cancel today's notification and set up the next one for tomorrow
+      clearLocalNotification()
+        .then(setUpLocalNotification);
       return (
         <View>
           <ScoreCard navigation={this.props.navigation} score={correctAnswers} total={totalQuestions}></ScoreCard>
