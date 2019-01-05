@@ -8,7 +8,7 @@ import { black, white } from '../utils/colors';
 class Deck extends Component {
 
   // Set page title which we'll target in routing and use in the header for this page
-  // https://snack.expo.io/SklGQeYIM
+  // Idea is from this snack - https://snack.expo.io/SklGQeYIM
   componentWillMount() {
     this.props.navigation.setParams({title: this.props.currentDeck.title});
   }

@@ -24,11 +24,13 @@ export const ScreenStack = StackNavigator({
   Deck: {
     screen: Deck,
     navigationOptions:({navigation}) => ({
+      // Using this approach to set title - https://github.com/react-navigation/react-navigation/issues/2379
+      title: typeof(navigation.state.params)==='undefined' || typeof(navigation.state.params.title) === 'undefined' ? '': navigation.state.params.title,
       tabBarVisible: false,
       headerLeft:
       <Ionicons name={Platform.OS === 'ios' ? 'ios-arrow-back' : 'md-arrow-back'}
                 onPress={() => navigation.navigate('DeckList')}
-                size={35} color="black"/>,
+                size={25} color="black"/>,
     }),
   },
   Quiz: {
@@ -55,19 +57,20 @@ export const ScreenStack = StackNavigator({
 });
 
 // TabNavigator returns a Component which I can render in the rest of my app
+// Only adding ios icons as icons aren't included on android tabs
 export const Tabs = TabNavigator({
   DeckList: {
     screen: ScreenStack,
     navigationOptions: {
       tabBarLabel: 'Deck List',
-      tabBarIcon: ({ tintColor }) => <Ionicons name='filing' size={35} color={tintColor} />
+      tabBarIcon: ({ tintColor }) => <Ionicons name='ios-filing' size={35} color={tintColor} />
     }
   },
   AddDeck: {
     screen: AddDeck,
     navigationOptions: {
       tabBarLabel: 'Add Deck',
-      tabBarIcon: ({ tintColor }) => <Ionicons name='add' size={35} color={tintColor} />
+      tabBarIcon: ({ tintColor }) => <Ionicons name='ios-add' size={35} color={tintColor} />
     }
   },
 }, {
