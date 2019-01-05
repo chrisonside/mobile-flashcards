@@ -23,10 +23,13 @@ export const ScreenStack = StackNavigator({
   },
   Deck: {
     screen: Deck,
-    navigationOptions: {
-      title: 'Deck',
+    navigationOptions:({navigation}) => ({
       tabBarVisible: false,
-    },
+      headerLeft:
+      <Ionicons name={Platform.OS === 'ios' ? 'ios-arrow-back' : 'md-arrow-back'}
+                onPress={() => navigation.navigate('DeckList')}
+                size={35} color="black"/>,
+    }),
   },
   Quiz: {
     screen: Quiz,
