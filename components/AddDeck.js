@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { StyleSheet, Text, TextInput, View } from 'react-native';
-
+import { Platform, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { addDeck, setCurrentDeck } from '../actions';
 import StyledButton from './StyledButton';
 import { black, white } from '../utils/colors';
@@ -10,7 +9,7 @@ class AddDeck extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      inputText: ''
+      inputText: '',
     };
   }
 
@@ -29,8 +28,8 @@ class AddDeck extends Component {
     this.props.navigation.navigate('Deck');
   }
 
-  // todo - disable submit button unless this.state.inputText is populated
   render() {
+    const shouldSubmitBeDisabled = !this.state.inputText;
     return (
       <View>
         <Text>What is the title of your new deck?</Text>
@@ -38,7 +37,11 @@ class AddDeck extends Component {
           placeholder='Deck title'
           onChangeText={(inputText) => this.setState({inputText})}
         />
-        <StyledButton onPress={this.handleSubmit}>Submit</StyledButton>
+        <TouchableOpacity
+          onPress={this.handleSubmit}
+          disabled={shouldSubmitBeDisabled}>
+            <Text>Submit</Text>
+        </TouchableOpacity>
       </View>
     )
   }

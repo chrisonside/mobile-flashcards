@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { StyleSheet, Text, TextInput, View } from 'react-native';
+import { Platform, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
 import { addCard, addCardToCurrentDeck } from '../actions';
 import StyledButton from './StyledButton';
@@ -26,27 +26,8 @@ class AddQuizCard extends Component {
     this.props.navigation.navigate('Deck');
   }
 
-  // {
-  //   question: 'What is React?',
-  //   answer: 'A library for managing user interfaces'
-  // }
-
-  // handleSubmit = () =>  {
-  //   const deckKey = this.state.inputText;
-  //   const deckData = {
-  //     title: deckKey,
-  //     questions: [],
-  //   }
-
-  //   // Update Redux store (middleware in App.js handles AsyncStorage update)
-  //   this.props.dispatch(addDeck(deckKey, deckData));
-  //   this.props.dispatch(setCurrentDeck(deckKey));
-
-  //   // Finally switch screens
-  //   this.props.navigation.navigate('Deck');
-  // }
-
   render() {
+    const shouldSubmitBeDisabled = (!this.state.question || !this.state.answer);
     return (
       <View>
         <TextInput
@@ -57,7 +38,11 @@ class AddQuizCard extends Component {
           placeholder='Answer'
           onChangeText={(answer) => this.setState({answer})}
         />
-        <StyledButton onPress={this.handleSubmit}>Submit</StyledButton>
+        <TouchableOpacity
+          onPress={this.handleSubmit}
+          disabled={shouldSubmitBeDisabled}>
+            <Text>Submit</Text>
+        </TouchableOpacity>
       </View>
     )
   }
