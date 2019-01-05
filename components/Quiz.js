@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { StyleSheet, Text, View } from 'react-native';
 
 import ScoreCard from './ScoreCard';
@@ -6,7 +7,7 @@ import Pagination from './Pagination';
 import StyledButton from './StyledButton';
 import { black, white } from '../utils/helpers';
 
-export default class Quiz extends Component {
+class Quiz extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -43,26 +44,10 @@ export default class Quiz extends Component {
 
   render() {
     const { currentQuestionNum, correctAnswers, showQuestion } = this.state;
+    const { currentDeckQuestions } = this.props;
 
-    // todo - replace this with real data
-    const currentDeckCards = [
-      {
-        question: 'What is React?',
-        answer: 'A library for managing user interfaces'
-      },
-      {
-        question: 'Where do you make Ajax requests in React?',
-        answer: 'The componentDidMount lifecycle event'
-      },
-      {
-        question: 'What is my name?',
-        answer: 'Chris'
-      },
-    ];
-
-    const totalQuestions = currentDeckCards.length;
-
-    const currentCard = currentDeckCards[currentQuestionNum - 1];
+    const totalQuestions = currentDeckQuestions.length;
+    const currentCard = currentDeckQuestions[currentQuestionNum - 1];
 
     // Display scorecard if all cards in deck answered
     // I pass navigation as prop so that the functional component ScoreCard can access it
@@ -98,3 +83,15 @@ export default class Quiz extends Component {
     )
   }
 }
+
+function mapStateToProps (state) {
+  const currentDeckQuestions = state.currentDeck.questions;
+  return {
+    currentDeckQuestions,
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  null,
+)(Quiz);

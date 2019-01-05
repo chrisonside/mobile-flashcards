@@ -1,6 +1,7 @@
 export const INITIALISE_DECK_DATA = 'INITIALISE_DECK_DATA';
 export const ADD_DECK = 'ADD_DECK';
 export const ADD_CARD = 'ADD_CARD';
+export const ADD_CARD_TO_CURRENT_DECK = 'ADD_CARD_TO_CURRENT_DECK';
 export const SET_CURRENT_DECK = 'SET_CURRENT_DECK';
 
 export function initaliseDeckData (deckData) {
@@ -18,10 +19,19 @@ export function addDeck (deckKey, deckData) {
   }
 }
 
-export function addCard (card) {
+export function addCard (currentDeckKey, cardData) {
   return {
     type: ADD_CARD,
-    card,
+    currentDeckKey,
+    cardData,
+  }
+}
+
+export function addCardToCurrentDeck (currentDeckKey, cardData) {
+  return {
+    type: ADD_CARD_TO_CURRENT_DECK,
+    currentDeckKey,
+    cardData,
   }
 }
 
