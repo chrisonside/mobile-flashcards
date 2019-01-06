@@ -1,13 +1,35 @@
 import React from 'react';
-import { StyleSheet, Text, TouchableHighlight, View } from 'react-native';
+import { Platform, StyleSheet, Text, TouchableOpacity } from 'react-native';
 
-import { black, white } from '../utils/helpers';
+import { white } from '../utils/colors';
 
-// Note to self on using props.children - https://codeburst.io/a-quick-intro-to-reacts-props-children-cb3d2fce4891
 export default function StyledButton ({ children, onPress, style = {} }) {
   return (
-    <TouchableHighlight onPress={onPress} underlayColor={black}>
-      <Text>{children}</Text>
-    </TouchableHighlight>
+    <TouchableOpacity
+      activeOpacity={0.7}
+      onPress={onPress}
+      style={Platform.OS === 'ios' ? [styles.iosButton, style] : [styles.androidButton, style]}>
+        <Text style={{ color: white }}>{children}</Text>
+    </TouchableOpacity>
   )
 }
+
+// Set up button defaults for my app
+const styles = StyleSheet.create({
+  iosButton: {
+    height: 45,
+    padding: 10,
+    borderRadius: 6,
+    alignSelf: 'stretch'
+  },
+  androidButton: {
+    height: 45,
+    padding: 10,
+    paddingRight: 25,
+    paddingLeft: 25,
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'stretch',
+    borderRadius: 3,
+  },
+})
