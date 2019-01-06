@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { StyleSheet, Text, View } from 'react-native';
 
 import StyledButton from './StyledButton';
-import { black, white } from '../utils/colors';
+import { blue, green } from '../utils/colors';
 
 class Deck extends Component {
 
@@ -13,7 +13,6 @@ class Deck extends Component {
     this.props.navigation.setParams({title: this.props.currentDeck.title});
   }
 
-  // todo - potentially put updateScreen func in helpers
   updateScreen = (screen) => {
     this.props.navigation.navigate(screen);
   }
@@ -23,15 +22,32 @@ class Deck extends Component {
     const cardsInDeck = currentDeck.questions.length;
 
     return (
-      <View>
-        <Text>title is {currentDeck.title}</Text>
-        <Text>{cardsInDeck} cards</Text>
-        <StyledButton onPress={() => {this.updateScreen('AddQuizCard')}}>Add Card</StyledButton>
-        <StyledButton onPress={() => {this.updateScreen('Quiz')}}>StartQuiz</StyledButton>
+      <View style={styles.container}>
+        <Text style={styles.title}>{currentDeck.title}</Text>
+        <Text style={styles.subtitle}>Currently {cardsInDeck} cards in the deck</Text>
+        <StyledButton style={{ backgroundColor: blue, marginBottom: 20 }} onPress={() => {this.updateScreen('AddQuizCard')}}>Add Card</StyledButton>
+        <StyledButton style={{ backgroundColor: green, marginBottom: 20 }} onPress={() => {this.updateScreen('Quiz')}}>Start Quiz</StyledButton>
       </View>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 40,
+    alignItems: 'center',
+  },
+  title: {
+    fontSize: 25,
+    fontWeight: '700',
+    marginBottom: 10,
+  },
+  subtitle: {
+    fontSize: 19,
+    marginBottom: 30,
+  },
+});
 
 function mapStateToProps (state) {
   return {
