@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { FlatList, StyleSheet, Text, View } from 'react-native';
 import { connect } from 'react-redux';
 
 import { getDeckListFromAsyncStorage } from '../utils/api';
 import { initaliseDeckData, setCurrentDeck } from '../actions';
 import { isArrayEmpty, objectToArray } from '../utils/helpers';
-import { white, black } from '../utils/helpers';
+import { black, orange } from '../utils/colors';
 
 class DeckList extends Component {
 
@@ -26,27 +26,67 @@ class DeckList extends Component {
   render() {
     const { deckArray } = this.props;
 
-    // todo - Style this properly
     if (isArrayEmpty(deckArray)) {
       return (
-        <View>
-          <Text>You have no decks! Click on Add Deck to get started</Text>
+        <View style={styles.container}>
+          <Text style={styles.title}>You have no decks yet! 😃 Click on Add Deck to get started</Text>
         </View>
       )
     }
-    // todo - Give <View key={deck.title}> a better key
+
     return (
-      <View>
-        { deckArray.map((deck) => (
-          <View key={deck.title}>
-            <Text onPress={() => {this.updateScreenAndRedux(deck.title)}}>{deck.title}</Text>
-            <Text>{deck.questions.length} cards</Text>
-          </View>
-        ))}
+      <View style={styles.container}>
+        <FlatList
+          style={styles.list}
+          data={deckArray}
+          renderItem={({item}) => (
+            <View style={styles.deckItem}>
+              <Text style={styles.deckItemText} onPress={() => {this.updateScreenAndRedux(item.title)}}>{item.title}</Text>
+              <Text style={styles.smallPrint}>{item.questions.length} cards</Text>
+            </View>
+          )}
+          showsVerticalScrollIndicator={false}
+          // https://stackoverflow.com/questions/44545148/basic-flatlist-code-throws-warning-react-native#answer-44545938
+          keyExtractor={(item, index) => index.toString()}
+        />
       </View>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    padding: 40,
+  },
+  title: {
+    fontSize: 25,
+    fontWeight: '700',
+    marginBottom: 30,
+    textAlign: 'center',
+  },
+  list: {
+    paddingTop: 40,
+    paddingRight: 40,
+    paddingLeft: 40,
+  },
+  deckItem: {
+    alignItems: 'center',
+    marginBottom: 30,
+  },
+  deckItemText: {
+    fontSize: 25,
+    marginBottom: 2,
+    color: orange,
+    textDecorationLine: 'underline',
+    textDecorationStyle: 'solid',
+    textDecorationColor: orange,
+  },
+  smallPrint: {
+    color: black,
+  }
+});
 
 function mapStateToProps (state) {
   const deckArray = objectToArray(state.decks || {});
