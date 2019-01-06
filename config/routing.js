@@ -13,7 +13,6 @@ import { blue, white } from '../utils/colors';
 
 // I followed this tutorial whilst setting up my navigation - https://hackernoon.com/getting-started-with-react-navigation-the-navigation-solution-for-react-native-ea3f4bd786a4
 // I am nesting my app's screen stack (via StackNavigator) within my Tabs (via TabNavigator)
-// todo - add dynamic page titles here
 export const ScreenStack = StackNavigator({
   DeckList: {
     screen: DeckList,
@@ -30,7 +29,9 @@ export const ScreenStack = StackNavigator({
       headerLeft:
       <Ionicons name={Platform.OS === 'ios' ? 'ios-arrow-back' : 'md-arrow-back'}
                 onPress={() => navigation.navigate('DeckList')}
-                size={25} color="black"/>,
+                size={25}
+                style={{padding: 20}}
+                color="black"/>,
     }),
   },
   Quiz: {
@@ -82,7 +83,7 @@ export const Tabs = TabNavigator({
     activeTintColor: Platform.OS === 'ios' ? blue : white,
     style: {
       backgroundColor: Platform.OS === 'ios' ? white : blue,
-      height: 60,
+      height: 56,
     }
   }
 });
