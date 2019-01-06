@@ -1,8 +1,9 @@
+/* Note - I am re-using a few helper functions from one of my previous Udacity projects */
+
 export function isArrayEmpty(array) {
   return array.length <= 0;
 }
 
-/* Note - I am re-using 3 helper functions from a previous Udacity project */
 export function isObjectEmpty(obj) {
   if(Object.keys(obj).length === 0 && obj.constructor === Object) {
     return true;
