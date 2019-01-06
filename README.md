@@ -6,6 +6,10 @@ Mobile Flashcards is a React Native app where a user can create flashcards and t
 
 I built this React Native app as part of my coursework for Udacity's [React Developer NanoDegree](https://eu.udacity.com/course/react-nanodegree--nd019) course.
 
+# Which platforms have been tested so far
+
+I've tested the app on Android by using the Expo app on my personal Android phone.
+
 ## Tech stack used
 
 This project has been bootstrapped with [Create React Native App](https://yarnpkg.com/en/package/create-react-native-app).
@@ -18,11 +22,7 @@ Whilst I am retrieving previous deck data using the AsyncStorage library, I am m
 
 I am using [React Navigation](https://reactnavigation.org/docs/en/getting-started.html) to manage the tab and stack navigation.
 
-# Testing
-
-I've developed and tested the app for Android by using the Expo app on my personal Android phone.
-
-I've also downloaded the iOS simulator and tested my app on iOS.
+When it comes to styling, I am using CSS in JS via [React Native's StyleSheet API](https://facebook.github.io/react-native/docs/stylesheet). I also use [React Native's Platform API](https://facebook.github.io/react-native/docs/platform-specific-code) to detect whether a user is on an iOS or Android device so I can serve up different styles accordingly.
 
 # To get the project up and running
 
@@ -30,3 +30,13 @@ I've also downloaded the iOS simulator and tested my app on iOS.
 * `cd mobile-flashcards`
 * `yarn install`
 * `yarn start`
+
+# Next steps
+
+These are my next steps for the app:
+
+* Get the iOS simulator up and running on my Mac and then test my app on iOS too.
+* Add validation to prevent decks with the same name being added.
+* Add functionality for user to delete decks and cards.
+* Whilst I've disabled submit buttons until required inputs have been filled, it'd be good to add disabled styles to those submit buttons, or alternatively add error messages to guide the user better.
+* When you add lots and lots of decks to the list, the very end of the FlatList is cut off - this is a known issue, https://github.com/facebook/react-native/issues/15707, so it'd be good to investigate it further and see if I can find a fix.
