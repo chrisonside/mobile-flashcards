@@ -2,11 +2,11 @@
 
 # Overview
 
-Mobile Flashcards is a React Native app where a user can create flashcards and then take quizzes to test their knowledge. A user can create and store flashcards in custom decks (categories) and then elect to take a quiz where they run through all the flashcards in a deck and receive a final score for how many they got right.
+Mobile Flashcards is a React Native app where a user can create flashcards and then take quizzes to test their knowledge. A user can create and store flashcards in custom decks and then elect to take a quiz where they run through all the flashcards in a deck and receive a final score for how many they got right.
 
 I built this React Native app as part of my coursework for Udacity's [React Developer NanoDegree](https://eu.udacity.com/course/react-nanodegree--nd019) course.
 
-# Which platforms have been tested so far
+## Which platform has the app been tested on so far:
 
 I've tested the app on Android by using the Expo app on my personal Android phone.
 
